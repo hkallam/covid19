@@ -20,7 +20,8 @@ const mapNames = {
 }
 
 // translations
-const en2zh = JSON.parse(fs.readFileSync('data/map-translations/en2zh.json'))
+let en2zh = JSON.parse(fs.readFileSync('data/map-translations/en2zh.json'))
+en2zh['Guatemala'] = '危地马拉'
 // const states_abbr_en = JSON.parse(fs.readFileSync('data/map-translations/us_states_abbr_en.json'))
 // const states_abbr_zh = JSON.parse(fs.readFileSync('data/map-translations/us_states_abbr_zh.json'))
 
@@ -219,7 +220,8 @@ function generateData(filename, metric) {
                 let count = parseInt(lineSplit[index + 4], 10) || 0
 
                 // current day
-                if (index + 4 >= lineSplit.length) count = currCount
+                // if (index + 4 >= lineSplit.length) count = currCount
+                if (index + 4 >= lineSplit.length) return
 
                 if (metric === 'confirmedCount' && `${country}|${province}|${date}` in confirmed_fixes_dict)
                     // fixes

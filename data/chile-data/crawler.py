@@ -8,9 +8,6 @@
 import pandas as pd
 import requests
 
-urlConfirmed = "https://github.com/YachayData/COVID-19/raw/master/COVID19_Chile_Regiones-casos_totales.CSV"
-urlDeaths = "https://github.com/YachayData/COVID-19/raw/master/COVID19_Chile_Regiones-fallecidos_totales.CSV"
-
 url = "https://github.com/YachayData/COVID-19/raw/master/Consolidado_COVID19_Chile_Regiones.CSV"
 df = pd.read_csv(url)
 
@@ -24,14 +21,12 @@ df.columns = [
 #we add fill_value=0 because we want to still have integers
 dfConfirmed = df.pivot_table(index='Date',
                              columns='id_reg',
-                             values='casos_nuevos',
+                             values='casos_totales',
                              fill_value=0)
 dfDeaths = df.pivot_table(index='Date',
                           columns='id_reg',
-                          values='fallecidos_nuevos',
+                          values='fallecidos_totales',
                           fill_value=0)
-
-print(dfConfirmed)
 
 #We'll add spaces and accesnt marks
 columns_names = {
